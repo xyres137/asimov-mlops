@@ -1,0 +1,59 @@
+apiVersion: ray.io/v1alpha1
+kind: RayService
+metadata:
+  name: ray-service
+spec:
+  serveConfigV2:
+  rayClusterConfig:
+    headGroupSpec:
+      rayStartParams:
+        dashboard-host: '0.0.0.0'
+      template:
+        spec:
+          containers:
+            - name: ray-head
+              image: rayproject/ray:2.36.0
+              env:
+                - name: MLFLOW_TRACKING_URI
+                  value: "http://mlflow-tracking.mlflow"
+                - name: MLFLOW_TRACKING_USERNAME
+                  value: user
+                - name: MLFLOW_TRACKING_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: mlflow-tracking
+                      key: admin-password
+              securityContext:
+                capabilities:
+                  add:
+                    - SYS_PTRACE
+    workerGroupSpecs:
+      - replicas: 1
+        minReplicas: 1
+        maxReplicas: 1
+        groupName: af-group
+        rayStartParams: {}
+        template:
+          spec:
+            containers:
+              - name: ray-worker
+                resources:
+                  limits:
+                    nvidia.com/gpu: 1
+                  requests:
+                    nvidia.com/gpu: 1
+                image: rayproject/ray:2.36.0
+                env:
+                  - name: MLFLOW_TRACKING_URI
+                    value: "http://mlflow-tracking.mlflow"
+                  - name: MLFLOW_TRACKING_USERNAME
+                    value: user
+                  - name: MLFLOW_TRACKING_PASSWORD
+                    valueFrom:
+                      secretKeyRef:
+                        name: mlflow-tracking
+                        key: admin-password
+                securityContext:
+                  capabilities:
+                    add:
+                      - SYS_PTRACE

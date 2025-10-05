@@ -1,0 +1,11 @@
+executor: "LocalKubernetesExecutor"
+multiNamespaceMode: true
+dags:
+  persistence:
+    enabled: true
+  gitSync:
+    enabled: true
+    repo: https://isense-gitlab.iccs.gr/eoem/projects/asimov/platform-source
+    branch: main
+    subPath: airflow_dags
+    credentialsSecret: git-credentials

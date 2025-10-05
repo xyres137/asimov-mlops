@@ -1,0 +1,21 @@
+[project]
+authors = ["dimitris.lygkonis <dimitris.lygkonis@iccs.gr>"]
+channels = ["conda-forge"]
+description = "Active fires production."
+name = "active_fires"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "==3.9.21"
+gdal = "==3.7.3"
+
+[pypi-dependencies]
+mlflow = { version = "==2.20.2"}
+pydantic = "==2.10.6"
+pydantic-settings = "==2.7.1"
+boto3 = "==1.36.22"
+eumdac = ">=3.0.0, <4"
+tqdm = ">=4.67.1, <5"

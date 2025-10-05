@@ -1,0 +1,17 @@
+apiVersion: ray.io/v1alpha1
+kind: RayService
+metadata:
+  name: ray-service
+spec:
+  serveConfigV2: | 
+    applications:
+      - name: carbon-monoxide-predictor
+        route_prefix: /
+        import_path: ray_model_deployments.carbon_monoxide_deployment:carbon_monoxide_predictor_app
+        runtime_env:
+          working_dir: "https://isense-gitlab.iccs.gr/api/v4/projects/1315/repository/archive.zip?sha=main&path=ray_model_deployments&private_token=INSERT_TOKEN"
+          pip: ["mlflow==2.20.2", "deep-forest==0.1.7", "xgboost==2.1.3", "pydantic==2.8.0"]
+        deployments:
+          - name: CarbonMonoxidePredictor
+            user_config: 
+              version: 1

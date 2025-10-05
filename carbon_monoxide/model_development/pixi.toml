@@ -1,0 +1,24 @@
+[project]
+authors = ["dimitris.lygkonis <dimitris.lygkonis@iccs.gr>"]
+channels = ["conda-forge"]
+description = "Carbon monoxide predictor."
+name = "carbon_monoxide"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "==3.9.21"
+
+[pypi-dependencies]
+mlflow = "==2.20.2"
+boto3 = "==1.7.84"
+pandas = "==2.2.3"
+numpy = "==1.26.4"
+xgboost = "==2.1.3"
+imbalance-metrics = "==0.0.6"
+deep-forest = "==0.1.7"
+pydantic = "==2.10.6"
+pydantic-settings = "==2.7.1"
+denseweight = "==0.1.2"

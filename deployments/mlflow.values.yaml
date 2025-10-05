@@ -1,0 +1,7 @@
+tracking:  
+  extraArgs:  
+    - "-w 8"  
+    - "--gunicorn-opts=\"--timeout=0\""  
+  resources:  
+    requests:  
+      memory: 3Gi

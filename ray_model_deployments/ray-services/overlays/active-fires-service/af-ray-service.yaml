@@ -1,0 +1,17 @@
+apiVersion: ray.io/v1alpha1
+kind: RayService
+metadata:
+  name: af-predictor
+spec:
+  serveConfigV2: | 
+    applications:
+      - name: active-fires-predictor
+        route_prefix: /
+        import_path: ray_model_deployments.active_fires_deployment:active_fires_predictor_app
+        runtime_env:
+          working_dir: "https://isense-gitlab.iccs.gr/api/v4/projects/1315/repository/archive.zip?sha=main&path=ray_model_deployments&private_token=INSERT_TOKEN"
+          pip: ["mlflow==2.20.2", "tensorflow[and-cuda]==2.17.1", "pydantic==2.8.0", "python-multipart==0.0.20"]
+        deployments:
+          - name: ActiveFiresPredictor
+            user_config: 
+              version: 1
