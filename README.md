@@ -1,6 +1,6 @@
 # asimov-mlops
 
-This repository contains MLOps pipelines that were developed as part of ESA's ASIMOV project whose objective was super-resolution for active fire detection.
+This repository contains MLOps pipelines that were developed as part of ESA's ASIMOV project for super-resolution of satellite dervied Essential Climatic Variables (ECV).
 
 The stack is: 
 - Kubernetes
@@ -9,7 +9,3 @@ The stack is:
 - Ray
 - Pixi 
 - NVIDIA GPU K8s Operator
-
-
-
-
